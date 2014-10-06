@@ -22,7 +22,7 @@ class Geocode
     /**
      * Array containing the query results
      */
-    private $service_results = array();
+    private $service_results;
     
     protected $address = '';
     protected $latitude = '';
@@ -40,6 +40,16 @@ class Geocode
         $this->fetchAddressDetail( $address );
     }
 
+    private function _populateAddressVars()
+    {
+        if ( !$this->service_results ) {
+            return false;
+        }
+
+        $this->latitude = $this->service_results->results[0]->geometry->location->lat;
+        $this->longitude = $this->service_results->results[0]->geometry->location->lng;
+    }
+
     public function fetchAddressDetail( $address )
     {
         $this->address = $address;
@@ -53,7 +63,9 @@ class Geocode
             curl_setopt( $ch, CURLOPT_URL, $this->service_url );
             curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
             
-            $this->service_results = json_decode(curl_exec($ch), true);
+            $this->service_results = json_decode( curl_exec($ch) );
+
+            $this->_populateAddressVars();
 
         } else {
             return false;
