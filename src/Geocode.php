@@ -14,11 +14,21 @@ namespace kamranahmedse;
  */
 class Geocode
 {
-    protected $address;
-    protected $latitude;
-    protected $longitude;
-    protected $country;
-    protected $town;
+    /**
+     * API URL through which the address will be obtained.
+     */ 
+    private $service_url = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=";
+
+    /**
+     * Array containing the query results
+     */
+    private $service_results = array();
+    
+    protected $address = '';
+    protected $latitude = '';
+    protected $longitude = '';
+    protected $country = '';
+    protected $town = '';
 
     /**
      * Constructor
@@ -32,8 +42,19 @@ class Geocode
 
     public function fetchAddressDetail( $address )
     {
+        $this->address = $address;
+
         if ( !empty($address) ) {
-            // Send a request to google API
+
+            $this->service_url .= urlencode( $address );
+
+            $ch = curl_init();
+
+            curl_setopt( $ch, CURLOPT_URL, $this->service_url );
+            curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
+            
+            $this->service_results = json_decode(curl_exec($ch), true);
+
         } else {
             return false;
         }
