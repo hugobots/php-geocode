@@ -28,6 +28,7 @@ class Geocode
     protected $latitude = '';
     protected $longitude = '';
     protected $country = '';
+    protected $locality = '';
     protected $district = '';
     protected $postcode = '';
     protected $town = '';
@@ -109,6 +110,42 @@ class Geocode
             return false;
         }
     }
+
+    public function getAddress ( $default = '' ) {
+        return $this->address ? $this->address : $default;
+    }
+
+    public function getLatitude ( $default = '' ) {
+        return $this->latitude ? $this->latitude : $default;
+    }
+
+    public function getLongitude ( $default = '' ) {
+        return $this->longitude ? $this->longitude : $default;
+    }
+
+    public function getCountry ( $default = '' ) {
+        return $this->country ? $this->country : $default;
+    }
+
+    public function getLocality ( $default = '' ) {
+        return $this->locality ? $this->locality : $default;
+    }
+
+    public function getDistrict ( $default = '' ) {
+        return $this->district ? $this->district : $default;
+    }
+
+    public function getPostcode ( $default = '' ) {
+        return $this->postcode ? $this->postcode : $default;
+    }
+
+    public function getTown ( $default = '' ) {
+        return $this->town ? $this->town : $default;
+    }
+
+    public function getStreetNumber ( $default = '' ) {
+        return $this->street_number ? $this->street_number : $default;
+    }    
 
     /**
      * @return string the object in string format
