@@ -43,11 +43,11 @@ class Geocode
         $this->fetchAddressLatLng( $address );
         
         $url = $this->service_url . '&latlng='.$this->latitude.','.$this->longitude;
-        $this->service_results = $this->_fetchAddressDetail( $url );
+        $this->service_results = $this->_fetchServiceDetails( $url );
         $this->_populateAddressVars();        
     }
 
-    private function _fetchAddressDetail( $url )
+    private function _fetchServiceDetails( $url )
     {
         $ch = curl_init();
 
@@ -98,7 +98,7 @@ class Geocode
 
             $tempAddress = $this->service_url . "&address=" . urlencode( $address );
 
-            $this->service_results = $this->_fetchAddressDetail( $tempAddress );
+            $this->service_results = $this->_fetchServiceDetails( $tempAddress );
 
             if ( $this->service_results !== false ) {
                 $this->latitude = $this->service_results->results[0]->geometry->location->lat;
