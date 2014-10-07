@@ -65,7 +65,7 @@ class Geocode
 
     private function _populateAddressVars()
     {
-        foreach ($this->service_results->results[0]->address_components as $component) {
+        foreach ( $this->service_results->results[0]->address_components as $component ) {
             if (in_array('street_number', $component->types)) {
                 $this->street_number = $component->long_name;
             }
@@ -115,6 +115,6 @@ class Geocode
      */
     public function __toString()
     {
-        
+        return "address =>" . $this->address . " <br>latitude =>" . $this->latitude . " <br>longitude =>" . $this->longitude . " <br>country =>" . $this->country . " <br>district =>" . $this->district . " <br>postcode =>" . $this->postcode . " <br>town =>" . $this->town . " <br>street_number =>" . $this->street_number . " <br>";
     }
 }
