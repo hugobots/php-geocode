@@ -17,7 +17,7 @@ class Geocode
     /**
      * API URL through which the address will be obtained.
      */ 
-    private $service_url = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=";
+    private $service_url = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false";
 
     /**
      * Array containing the query results
@@ -28,7 +28,10 @@ class Geocode
     protected $latitude = '';
     protected $longitude = '';
     protected $country = '';
+    protected $district = '';
+    protected $postcode = '';
     protected $town = '';
+    protected $street_number = '';
 
     /**
      * Constructor
@@ -37,35 +40,70 @@ class Geocode
      */
     public function __construct( $address = '' )
     {
-        $this->fetchAddressDetail( $address );
+        $this->fetchAddressLatLng( $address );
+        
+        $url = $this->service_url . '&latlng='.$this->latitude.','.$this->longitude;
+        $this->service_results = $this->_fetchAddressDetail( $url );
+        $this->_populateAddressVars();        
+    }
+
+    private function _fetchAddressDetail( $url )
+    {
+        $ch = curl_init();
+
+        curl_setopt( $ch, CURLOPT_URL, $url );
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
+        
+        $service_results = json_decode( curl_exec($ch) );
+
+        if ( $service_results && $service_results->status === 'OK' ) {
+            return $service_results;
+        }
+
+        return false;
     }
 
     private function _populateAddressVars()
     {
-        if ( !$this->service_results ) {
-            return false;
+        foreach ($this->service_results->results[0]->address_components as $component) {
+            if (in_array('street_number', $component->types)) {
+                $this->street_number = $component->long_name;
+            }
+            if (in_array('locality', $component->types)) {
+                $this->locality = $component->long_name;
+            }
+            if (in_array('postal_town', $component->types)) {
+                $this->town = $component->long_name;
+            }
+            if (in_array('administrative_area_level_2', $component->types)) {
+                $this->county = $component->long_name;
+            }
+            if (in_array('country', $component->types)) {
+                $this->country = $component->long_name;
+            }
+            if (in_array('administrative_area_level_1', $component->types)) {
+                $this->district = $component->long_name;
+            }
+            if (in_array('postal_code', $component->types)) {
+                $this->postcode = $component->long_name;
+            }
         }
-
-        $this->latitude = $this->service_results->results[0]->geometry->location->lat;
-        $this->longitude = $this->service_results->results[0]->geometry->location->lng;
     }
 
-    public function fetchAddressDetail( $address )
+    public function fetchAddressLatLng( $address )
     {
         $this->address = $address;
 
         if ( !empty($address) ) {
 
-            $this->service_url .= urlencode( $address );
+            $tempAddress = $this->service_url . "&address=" . urlencode( $address );
 
-            $ch = curl_init();
+            $this->service_results = $this->_fetchAddressDetail( $tempAddress );
 
-            curl_setopt( $ch, CURLOPT_URL, $this->service_url );
-            curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-            
-            $this->service_results = json_decode( curl_exec($ch) );
-
-            $this->_populateAddressVars();
+            if ( $this->service_results !== false ) {
+                $this->latitude = $this->service_results->results[0]->geometry->location->lat;
+                $this->longitude = $this->service_results->results[0]->geometry->location->lng;
+            }
 
         } else {
             return false;
@@ -73,7 +111,7 @@ class Geocode
     }
 
     /**
-     * @return string the full file name
+     * @return string the object in string format
      */
     public function __toString()
     {
