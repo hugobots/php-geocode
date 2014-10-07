@@ -5,6 +5,7 @@
     "keywords": ["location", "address", "addresses", "google", "map", "maps", "gmap", "gmaps", "geocode", "geocoder", "geocoding"],
     "homepage": "https://github.com/kamranahmedse/php-geocode",
     "license": "MIT",
+    "version": "v1.0",
     "authors": [
         {
             "name": "Kamran Ahmed",
