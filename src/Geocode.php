@@ -8,7 +8,7 @@
  *
  * @author Kamran Ahmed <kamranahmed.se@gmail.com>
  * @license http://www.opensource.org/licenses/MIT
- * @version 0.1
+ * @version v1.0
  */
 class Geocode
 {
