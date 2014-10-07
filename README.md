@@ -10,4 +10,4 @@ A wrapper around the Google Geocoding API to get different details regarding an 
 - Street number
 
 #Requirement
-PHP >= 5.2.0 and <pre>curl</pre> enabled server.
+PHP >= 5.2.0 and [code]curl[/code] enabled server.
