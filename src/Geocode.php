@@ -1,7 +1,5 @@
 <?php
 
-namespace kamranahmedse;
-
 /**
  * Geocode
  *
@@ -253,6 +251,3 @@ class Geocode
         return "address =>" . $this->address . " <br>latitude =>" . $this->latitude . " <br>longitude =>" . $this->longitude . " <br>country =>" . $this->country . " <br>district =>" . $this->district . " <br>locality =>" . $this->locality . " <br>postcode =>" . $this->postcode . " <br>town =>" . $this->town . " <br>street_number =>" . $this->street_number . " <br>";
     }
 }
-
-$obj = new Geocode( "House number P-365, Street number 7, masoodabad, near samanabad, Faisalabad, Punjab Pakistan" );
-echo $obj;
