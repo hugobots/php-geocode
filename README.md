@@ -16,16 +16,8 @@ Installation
 =========
 You can install the library using the following ways
 #Composer
-The recommended installation method is through <a href="http://getcomposer.org/">Composer</a>, a dependency manager for PHP. Just add <code>kamranahmedse/php-geocode</code> to your project's <code>composer.json</code> file:
 
-```
-{
-    "require": {
-        "kamranahmedse/php-geocode": "*"
-    }
-}
-```
-and then run <code>composer install</code>. For further details you can find the package at <a href="https://packagist.org/packages/kamranahmedse/php-geocode">Packagist</a>.
+>Wait for this one
 
 #Manual way
 Or you can install the package manually by:
