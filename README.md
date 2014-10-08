@@ -33,16 +33,17 @@ Or you can install the package manually by:
 2. Add the <code>Geocode</code> class to your autoloader or require the file directly.
 
 #Getting Started
-I'm going to use the address of <a href="http://gcuf.edu.pk">my university</a> to explain the use of library i.e.
+I'm going to use the following address to explain the use of library i.e.
 
-```
-$address = "Kotwali Road,Jinnah Town,Punjab، 38000 Faisalabad";
-```
+>1600 Amphitheatre Parkway, Mountain View, CA
+
 Firstly, you have to instantiate the <code>Geocode</code> class and pass the address, so your code will look like
 ```
-$address = "Kotwali Road,Jinnah Town,Punjab، 38000 Faisalabad";
+$address = "1600 Amphitheatre Parkway, Mountain View, CA";
 
 $geocode = new Geocode( $address );
+// Optionally you can pass a second parameter set to true if you want to use https instead of http
+// $geocode = new Geocode( $address, true );
 
 // Note: All the functions below accept a parameter as a default value that will be return if the reuqired value isn't found
 $geocode->getAddress( 'default value' ); 
