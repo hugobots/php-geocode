@@ -1,5 +1,7 @@
 <?php
 
+namespace kamranahmedse;
+
 /**
  * Geocode
  *
