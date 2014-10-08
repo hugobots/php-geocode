@@ -15,7 +15,7 @@ class Geocode
     /**
      * API URL through which the address will be obtained.
      */ 
-    private $service_url = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false";
+    private $service_url = "://maps.googleapis.com/maps/api/geocode/json?sensor=false";
 
     /**
      * Array containing the query results
@@ -24,7 +24,7 @@ class Geocode
     
     /**
      * Address chunks
-     */      
+     */
     protected $address = '';
     protected $latitude = '';
     protected $longitude = '';
@@ -40,8 +40,14 @@ class Geocode
      *
      * @param string $address The address that is to be parsed
      */
-    public function __construct( $address = '' )
+    public function __construct( $address = '', $secure_protocol = false )
     {
+        if ( $secure_protocol === true ) {
+            $this->service_url = 'https' . $this->service_url;
+        } else {
+            $this->service_url = 'http' . $this->service_url;
+        }
+
         $this->fetchAddressLatLng( $address );
         
         $url = $this->service_url . '&latlng='.$this->latitude.','.$this->longitude;
@@ -81,6 +87,10 @@ class Geocode
      */ 
     private function _populateAddressVars()
     {
+        if ( !$this->service_results || !$this->service_results->results[0] ) {
+            return false;
+        }
+
         foreach ( $this->service_results->results[0]->address_components as $component ) {
             if (in_array('street_number', $component->types)) {
                 $this->street_number = $component->long_name;
