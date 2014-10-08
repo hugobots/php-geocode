@@ -14,7 +14,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "Geocode": "src/"
+            "kamranahmedse/Geocode": "src/"
         }
     },
     "require": {
