@@ -40,6 +40,9 @@ I'm going to use the following address to explain the use of library i.e.
 
 Firstly, you have to instantiate the <code>Geocode</code> class and pass the address, so your code will look like
 ```
+// Introduce the class into your scope
+use kamranahmedse\Geocode;
+
 $address = "1600 Amphitheatre Parkway, Mountain View, CA";
 
 $geocode = new Geocode( $address );
