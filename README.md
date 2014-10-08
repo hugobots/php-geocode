@@ -29,8 +29,9 @@ and then run <code>composer install</code>. For further details you can find the
 
 #Manual way
 Or you can install the package manually by:
-1. Copy <code>src/php-geocode.php</code> to your codebase, perhaps to the vendor directory.
-2. Add the <code>Geocode</code> class to your autoloader or require the file directly.
+
+- Copy <code>src/php-geocode.php</code> to your codebase, perhaps to the vendor directory.
+- Add the <code>Geocode</code> class to your autoloader or require the file directly.
 
 #Getting Started
 I'm going to use the following address to explain the use of library i.e.
