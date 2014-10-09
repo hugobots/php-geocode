@@ -104,7 +104,7 @@ class Geocode
                 $this->town = $component->long_name;
             }
             if (in_array('administrative_area_level_2', $component->types)) {
-                $this->county = $component->long_name;
+                $this->country = $component->long_name;
             }
             if (in_array('country', $component->types)) {
                 $this->country = $component->long_name;
