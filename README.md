@@ -10,7 +10,7 @@ A wrapper around the Google Geocoding API to get different details regarding an 
 - Street number
 
 #Requirement
-PHP >= 5.2.0 and <code>curl</code> enabled server.
+PHP >= 5.3.0 and <code>curl</code> enabled server.
 
 Installation
 =========
@@ -63,3 +63,9 @@ $geocode->getStreetNumber(); // returns the street number of the address
 
 #Feedback
 I'd love to hear what you have to say. Please open an issue for any feature requests that you may want or the bugs that you notice. Also you can contact me at <a href="mailto:kamranahmed.se@gmail.com">kamranahmed.se@gmail.com</a> or you can also find me at twitter <a href="http://twitter.com/kamranahmed_se">@kamranahmed_se</a>
+
+
+#Note
+It should be noted that, the Google Geocoding API has the following limits in place and you should keep them in mind before using this wrapper:
+- 2,500 requests per 24 hour period.
+- 5 requests per second.
