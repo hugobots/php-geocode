@@ -10,7 +10,7 @@ namespace kamranahmedse;
  *
  * @author Kamran Ahmed <kamranahmed.se@gmail.com>
  * @license http://www.opensource.org/licenses/MIT
- * @version v1.0
+ * @version v1.1
  */
 class Geocode
 {
