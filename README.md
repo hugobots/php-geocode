@@ -1,5 +1,5 @@
-PHP Geocode
-==========
+#PHP Geocode
+
 A wrapper around the Google Geocoding API to get different details regarding an address such as 
 - Latitude/longitude
 - Country
@@ -9,13 +9,12 @@ A wrapper around the Google Geocoding API to get different details regarding an 
 - Town
 - Street number
 
-#Requirement
+##Requirement
 PHP >= 5.3.0 and <code>curl</code> enabled server.
 
-Installation
-=========
+##Installation
 You can install the library using the following ways
-#Composer
+##Composer
 The recommended installation method is through <a href="http://getcomposer.org/">Composer</a>, a dependency manager for PHP. Just add <code>kamranahmedse/php-geocode</code> to your project's <code>composer.json</code> file:
 
 ```
@@ -27,13 +26,13 @@ The recommended installation method is through <a href="http://getcomposer.org/"
 ```
 and then run <code>composer install</code>. For further details you can find the package at <a href="https://packagist.org/packages/kamranahmedse/php-geocode">Packagist</a>.
 
-#Manual way
+##Manual way
 Or you can install the package manually by:
 
 - Copy <code>src/php-geocode.php</code> to your codebase, perhaps to the vendor directory.
 - Add the <code>Geocode</code> class to your autoloader or require the file directly.
 
-#Getting Started
+##Getting Started
 I'm going to use the following address to explain the use of library i.e.
 
 >1600 Amphitheatre Parkway, Mountain View, CA
@@ -61,5 +60,5 @@ $geocode->getTown(); // returns the town of the address
 $geocode->getStreetNumber(); // returns the street number of the address
 ```
 
-#Feedback
+##Feedback
 I'd love to hear what you have to say. Please open an issue for any feature requests that you may want or the bugs that you notice. Also you can contact me at <a href="mailto:kamranahmed.se@gmail.com">kamranahmed.se@gmail.com</a> or you can also find me at twitter <a href="http://twitter.com/kamranahmed_se">@kamranahmed_se</a>
