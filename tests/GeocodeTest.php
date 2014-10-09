@@ -1,0 +1,55 @@
+<?php
+
+namespace kamranahmedse;
+
+class GeocodeTest extends \PHPUnit_Framework_TestCase
+{
+
+    /**
+     * @dataProvider providerTestGeocodeProvider
+     */
+    public function testGeocode($address, $expected)
+    {
+        $actual = new Geocode($address);
+
+        $methods = array_keys($expected);
+        foreach ($methods as $method) {
+            $this->assertEquals($expected[$method], $actual->$method());
+        }
+    }
+
+    public function providerTestGeocodeProvider()
+    {
+        $providers = array();
+
+        $providers[] = array(
+                "1600 Amphitheatre Parkway, Mountain View, CA",
+                array(
+                    'getAddress' => '1600 Amphitheatre Parkway, Mountain View, CA',
+                    'getLatitude' => 37.422295300000002,
+                    'getLongitude' => -122.0840671,
+                    'getCountry' => 'United States',
+                    'getLocality' => 'Mountain View',
+                    'getDistrict' => 'California',
+                    'getPostcode' => '94043',
+                    'getStreetAddress' => 'Amphitheatre Parkway',
+                    'getStreetNumber' => '1600'
+                )
+            );
+
+        $providers[] = array(
+                "9 Little St, Beachburg, Ontario",
+                array(
+                    'getAddress' => '9 Little St, Beachburg, Ontario',
+                    'getCountry' => 'Canada',
+                    'getLocality' => 'Beachburg',
+                    'getDistrict' => 'Ontario',
+                    'getPostcode' => 'K0J 1C0',
+                    'getTown' => '',
+                    'getStreetNumber' => '9'
+                )
+            );
+
+        return $providers;
+    }
+}
