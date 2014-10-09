@@ -36,6 +36,7 @@ class Geocode
     protected $postcode = '';
     protected $town = '';
     protected $streetNumber = '';
+    protected $streetAddress = '';
 
     /**
      * Constructor
