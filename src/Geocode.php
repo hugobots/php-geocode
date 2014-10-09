@@ -305,7 +305,7 @@ class Geocode
 
         $formattedString = '';
         foreach ($methods as $method => $label) {
-            $formattedString .= $label.' =>'.$this->$method.'<br/>';
+            $formattedString .= $label.' =>'.$method.'<br/>';
         }
 
         return $formattedString;
