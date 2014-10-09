@@ -115,6 +115,9 @@ class Geocode
             if (in_array('postal_code', $component->types)) {
                 $this->postcode = $component->long_name;
             }
+            if (in_array('route', $component->types)) {
+                $this->streetAddress = $component->long_name;
+            }
         }
     }
 
@@ -253,7 +256,19 @@ class Geocode
      */ 
     public function getStreetNumber ( $default = '' ) {
         return $this->street_number ? $this->street_number : $default;
-    }    
+    }
+
+    /**
+     * getStreetAddress
+     * 
+     * Returns the getStreetAddress if found and the default value otherwise
+     * 
+     * @param string $default Default getStreetAddress that is to be returned if the getStreetAddress is not found
+     * @return string Default getStreetAddress string if no getStreetAddress found and the getStreetAddress otherwise
+     */ 
+    public function getStreetAddress ( $default = '' ) {
+        return $this->streetAddress ? $this->streetAddress : $default;
+    } 
 
     /**
      * @return string the object in string format
