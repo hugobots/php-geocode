@@ -16,7 +16,7 @@ class Geocode
 {
     /**
      * API URL through which the address will be obtained.
-     */ 
+     */
     private $service_url = "://maps.googleapis.com/maps/api/geocode/json?sensor=false";
 
     /**
@@ -35,21 +35,21 @@ class Geocode
     protected $district = '';
     protected $postcode = '';
     protected $town = '';
-    protected $street_number = '';
+    protected $streetNumber = '';
 
     /**
      * Constructor
      *
      * @param string $address The address that is to be parsed
      */
-    public function __construct( $address, $secure_protocol = false )
+    public function __construct($address, $secure_protocol = false)
     {
         $this->service_url = $secure_protocol ? 'https' . $this->service_url : 'http' . $this->service_url;
-        $this->fetchAddressLatLng( $address );
+        $this->fetchAddressLatLng($address);
         
         $url = $this->getServiceUrl() . '&latlng='.$this->latitude.','.$this->longitude;
-        $this->service_results = $this->_fetchServiceDetails( $url );
-        $this->_populateAddressVars();
+        $this->service_results = $this->fetchServiceDetails($url);
+        $this->populateAddressVars();
     }
 
     /**
@@ -63,23 +63,23 @@ class Geocode
     }
 
     /**
-     * _fetchServiceDetails
+     * fetchServiceDetails
      * 
      * Sends request to the passed Google Geocode API URL and fetches the address details and returns them
      * 
-     * @param  string $url Google geocode API URL containing the address or latitude/longitude from which the details are to be fetched
+     * @param  string $url Google geocode API URL containing the address or latitude/longitude
      * @return bool|object false if no data is returned by URL and the detail otherwise
-     */ 
-    private function _fetchServiceDetails( $url )
+     */
+    private function fetchServiceDetails($url)
     {
         $ch = curl_init();
 
-        curl_setopt( $ch, CURLOPT_URL, $url );
-        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         
-        $service_results = json_decode( curl_exec($ch) );
+        $service_results = json_decode(curl_exec($ch));
 
-        if ( $service_results && $service_results->status === 'OK' ) {
+        if ($service_results && $service_results->status === 'OK') {
             return $service_results;
         }
 
@@ -87,20 +87,20 @@ class Geocode
     }
 
     /**
-     * _populateAddressVars
+     * populateAddressVars
      * 
      * Populates the address chunks inside the object using the details returned by the service request
      * 
-     */ 
-    private function _populateAddressVars()
+     */
+    private function populateAddressVars()
     {
-        if ( !$this->service_results || !$this->service_results->results[0] ) {
+        if (!$this->service_results || !$this->service_results->results[0]) {
             return false;
         }
 
-        foreach ( $this->service_results->results[0]->address_components as $component ) {
+        foreach ($this->service_results->results[0]->address_components as $component) {
             if (in_array('street_number', $component->types)) {
-                $this->street_number = $component->long_name;
+                $this->streetNumber = $component->long_name;
             }
             if (in_array('locality', $component->types)) {
                 $this->locality = $component->long_name;
@@ -134,18 +134,18 @@ class Geocode
      * @param string $address Address whose latitude and longitudes are required
      * @return mixed false if there is no address found otherwise populates the latitude and longitude for the address 
      * 
-     */ 
-    public function fetchAddressLatLng( $address )
+     */
+    public function fetchAddressLatLng($address)
     {
         $this->address = $address;
 
-        if ( !empty($address) ) {
+        if (!empty($address)) {
 
-            $tempAddress = $this->getServiceUrl() . "&address=" . urlencode( $address );
+            $tempAddress = $this->getServiceUrl() . "&address=" . urlencode($address);
 
-            $this->service_results = $this->_fetchServiceDetails( $tempAddress );
+            $this->service_results = $this->fetchServiceDetails($tempAddress);
 
-            if ( $this->service_results !== false ) {
+            if ($this->service_results !== false) {
                 $this->latitude = $this->service_results->results[0]->geometry->location->lat;
                 $this->longitude = $this->service_results->results[0]->geometry->location->lng;
             }
@@ -162,8 +162,9 @@ class Geocode
      * 
      * @param string $default Default address that is to be returned if the address is not found
      * @return string Default address string if no address found and the address otherwise
-     */ 
-    public function getAddress ( $default = '' ) {
+     */
+    public function getAddress($default = '')
+    {
         return $this->address ? $this->address : $default;
     }
 
@@ -174,8 +175,9 @@ class Geocode
      * 
      * @param string $default Default latitude that is to be returned if the latitude is not found
      * @return string Default latitude string if no latitude found and the latitude otherwise
-     */ 
-    public function getLatitude ( $default = '' ) {
+     */
+    public function getLatitude($default = '')
+    {
         return $this->latitude ? $this->latitude : $default;
     }
 
@@ -186,8 +188,9 @@ class Geocode
      * 
      * @param string $default Default longitude that is to be returned if the longitude is not found
      * @return string Default longitude string if no longitude found and the longitude otherwise
-     */ 
-    public function getLongitude ( $default = '' ) {
+     */
+    public function getLongitude($default = '')
+    {
         return $this->longitude ? $this->longitude : $default;
     }
 
@@ -198,8 +201,9 @@ class Geocode
      * 
      * @param string $default Default country that is to be returned if the country is not found
      * @return string Default country string if no country found and the country otherwise
-     */ 
-    public function getCountry ( $default = '' ) {
+     */
+    public function getCountry($default = '')
+    {
         return $this->country ? $this->country : $default;
     }
 
@@ -210,8 +214,9 @@ class Geocode
      * 
      * @param string $default Default locality/country that is to be returned if the locality/country is not found
      * @return string Default locality/country string if no locality/country found and the locality/country otherwise
-     */ 
-    public function getLocality ( $default = '' ) {
+     */
+    public function getLocality($default = '')
+    {
         return $this->locality ? $this->locality : $default;
     }
 
@@ -222,8 +227,9 @@ class Geocode
      * 
      * @param string $default Default district that is to be returned if the district is not found
      * @return string Default district string if no district found and the district otherwise
-     */ 
-    public function getDistrict ( $default = '' ) {
+     */
+    public function getDistrict($default = '')
+    {
         return $this->district ? $this->district : $default;
     }
 
@@ -234,8 +240,9 @@ class Geocode
      * 
      * @param string $default Default postcode that is to be returned if the postcode is not found
      * @return string Default postcode string if no postcode found and the postcode otherwise
-     */ 
-    public function getPostcode ( $default = '' ) {
+     */
+    public function getPostcode($default = '')
+    {
         return $this->postcode ? $this->postcode : $default;
     }
 
@@ -246,8 +253,9 @@ class Geocode
      * 
      * @param string $default Default town that is to be returned if the town is not found
      * @return string Default town string if no town found and the town otherwise
-     */ 
-    public function getTown ( $default = '' ) {
+     */
+    public function getTown($default = '')
+    {
         return $this->town ? $this->town : $default;
     }
 
@@ -258,9 +266,10 @@ class Geocode
      * 
      * @param string $default Default getStreetNumber that is to be returned if the getStreetNumber is not found
      * @return string Default getStreetNumber string if no getStreetNumber found and the getStreetNumber otherwise
-     */ 
-    public function getStreetNumber ( $default = '' ) {
-        return $this->street_number ? $this->street_number : $default;
+     */
+    public function getStreetNumber($default = '')
+    {
+        return $this->streetNumber ? $this->streetNumber : $default;
     }
 
     /**
