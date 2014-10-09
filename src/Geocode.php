@@ -270,16 +270,34 @@ class Geocode
      * 
      * @param string $default Default getStreetAddress that is to be returned if the getStreetAddress is not found
      * @return string Default getStreetAddress string if no getStreetAddress found and the getStreetAddress otherwise
-     */ 
-    public function getStreetAddress ( $default = '' ) {
+     */
+    public function getStreetAddress($default = '')
+    {
         return $this->streetAddress ? $this->streetAddress : $default;
-    } 
+    }
 
     /**
      * @return string the object in string format
      */
     public function __toString()
     {
-        return "address =>" . $this->address . " <br>latitude =>" . $this->latitude . " <br>longitude =>" . $this->longitude . " <br>country =>" . $this->country . " <br>district =>" . $this->district . " <br>locality =>" . $this->locality . " <br>postcode =>" . $this->postcode . " <br>town =>" . $this->town . " <br>street_number =>" . $this->street_number . " <br>";
+        $methods = array(
+            'getAddress' => 'Address',
+            'getLatitude' => 'Latitude',
+            'getLongitude' => 'Longitude',
+            'getCountry' => 'Country',
+            'getLocality' => 'Locality',
+            'getDistrict' => 'District',
+            'getPostcode' => 'Postal Code',
+            'getStreetAddress' => 'Street Address',
+            'getStreetNumber' => 'Street Number'
+        );
+
+        $formattedString = '';
+        foreach ($methods as $method => $label) {
+            $formattedString .= $label.' =>'.$this->$method.'<br/>';
+        }
+
+        return $formattedString;
     }
 }
