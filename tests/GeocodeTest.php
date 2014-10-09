@@ -18,6 +18,21 @@ class GeocodeTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    public function testGeocodeProtocol()
+    {
+        $actual = new Geocode('', false);
+        $this->assertEquals(
+            'http://maps.googleapis.com/maps/api/geocode/json?sensor=false',
+            $actual->getServiceUrl()
+        );
+
+        $actual = new Geocode('', true);
+        $this->assertEquals(
+            'https://maps.googleapis.com/maps/api/geocode/json?sensor=false',
+            $actual->getServiceUrl()
+        );
+    }
+
     public function providerTestGeocodeProvider()
     {
         $providers = array();

@@ -44,17 +44,22 @@ class Geocode
      */
     public function __construct( $address, $secure_protocol = false )
     {
-        if ( $secure_protocol === true ) {
-            $this->service_url = 'https' . $this->service_url;
-        } else {
-            $this->service_url = 'http' . $this->service_url;
-        }
-
+        $this->service_url = $secure_protocol ? 'https' . $this->service_url : 'http' . $this->service_url;
         $this->fetchAddressLatLng( $address );
         
-        $url = $this->service_url . '&latlng='.$this->latitude.','.$this->longitude;
+        $url = $this->getServiceUrl() . '&latlng='.$this->latitude.','.$this->longitude;
         $this->service_results = $this->_fetchServiceDetails( $url );
         $this->_populateAddressVars();
+    }
+
+    /**
+     * Returns the private $service_url
+     * 
+     * @return string $this->service_url
+     */
+    public function getServiceUrl()
+    {
+        return $this->service_url;
     }
 
     /**
@@ -136,7 +141,7 @@ class Geocode
 
         if ( !empty($address) ) {
 
-            $tempAddress = $this->service_url . "&address=" . urlencode( $address );
+            $tempAddress = $this->getServiceUrl() . "&address=" . urlencode( $address );
 
             $this->service_results = $this->_fetchServiceDetails( $tempAddress );
 
