@@ -13,11 +13,7 @@ A wrapper around the Google Geocoding API to get different details regarding an 
 - Town
 - Street number
 
-<<<<<<< HEAD
-#Requirement
-=======
 ##Requirement
->>>>>>> 7db65bd01b291af81a0469f4878b3c8a9a5f1de1
 PHP >= 5.3.0 and <code>curl</code> enabled server.
 
 ##Installation
