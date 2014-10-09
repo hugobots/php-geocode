@@ -53,9 +53,9 @@ class GeocodeTest extends \PHPUnit_Framework_TestCase
             );
 
         $providers[] = array(
-                "9 Little St, Beachburg, Ontario",
+                "9 Little St, Beachburg, Ontario, Canada",
                 array(
-                    'getAddress' => '9 Little St, Beachburg, Ontario',
+                    'getAddress' => '9 Little St, Beachburg, Ontario, Canada',
                     'getCountry' => 'Canada',
                     'getLocality' => 'Beachburg',
                     'getDistrict' => 'Ontario',
