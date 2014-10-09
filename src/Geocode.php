@@ -42,7 +42,7 @@ class Geocode
      *
      * @param string $address The address that is to be parsed
      */
-    public function __construct( $address = '', $secure_protocol = false )
+    public function __construct( $address, $secure_protocol = false )
     {
         if ( $secure_protocol === true ) {
             $this->service_url = 'https' . $this->service_url;
