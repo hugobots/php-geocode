@@ -41,8 +41,8 @@ class GeocodeTest extends \PHPUnit_Framework_TestCase
                 "1600 Amphitheatre Parkway, Mountain View, CA",
                 array(
                     'getAddress' => '1600 Amphitheatre Parkway, Mountain View, CA',
-                    'getLatitude' => 37.422295300000002,
-                    'getLongitude' => -122.0840671,
+                    'getLatitude' => 37.422386099999997,
+                    'getLongitude' => -122.084059,
                     'getCountry' => 'United States',
                     'getLocality' => 'Mountain View',
                     'getDistrict' => 'California',
