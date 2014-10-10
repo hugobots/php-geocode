@@ -42,6 +42,7 @@ class Geocode
      * Constructor
      *
      * @param string $address The address that is to be parsed
+     * @param boolean $secure_protocol true if you need to use HTTPS and false otherwise (Defaults to false)
      */
     public function __construct($address, $secure_protocol = false)
     {
@@ -56,7 +57,7 @@ class Geocode
     /**
      * Returns the private $service_url
      * 
-     * @return string $this->service_url
+     * @return string The service URL
      */
     public function getServiceUrl()
     {
@@ -175,7 +176,7 @@ class Geocode
      * Returns the latitude if found and the default value otherwise
      * 
      * @param string $default Default latitude that is to be returned if the latitude is not found
-     * @return string Default latitude string if no latitude found and the latitude otherwise
+     * @return string|float Default latitude if no latitude found and the latitude otherwise
      */
     public function getLatitude($default = '')
     {
@@ -188,7 +189,7 @@ class Geocode
      * Returns the longitude if found and the default value otherwise
      * 
      * @param string $default Default longitude that is to be returned if the longitude is not found
-     * @return string Default longitude string if no longitude found and the longitude otherwise
+     * @return string|float Default longitude if no longitude found and the longitude otherwise
      */
     public function getLongitude($default = '')
     {
@@ -263,10 +264,10 @@ class Geocode
     /**
      * getStreetNumber
      * 
-     * Returns the getStreetNumber if found and the default value otherwise
+     * Returns the street number if found and the default value otherwise
      * 
-     * @param string $default Default getStreetNumber that is to be returned if the getStreetNumber is not found
-     * @return string Default getStreetNumber string if no getStreetNumber found and the getStreetNumber otherwise
+     * @param string $default Default street number that is to be returned if the street number is not found
+     * @return string Default street number if no street number found and the actual street number otherwise
      */
     public function getStreetNumber($default = '')
     {
@@ -276,10 +277,10 @@ class Geocode
     /**
      * getStreetAddress
      * 
-     * Returns the getStreetAddress if found and the default value otherwise
+     * Returns the address if found and the default value otherwise
      * 
-     * @param string $default Default getStreetAddress that is to be returned if the getStreetAddress is not found
-     * @return string Default getStreetAddress string if no getStreetAddress found and the getStreetAddress otherwise
+     * @param string $default Default address that is to be returned if the address is not found
+     * @return string Default address string if no address found and the address otherwise
      */
     public function getStreetAddress($default = '')
     {
