@@ -72,3 +72,7 @@ I'd love to hear what you have to say. Please open an issue for any feature requ
 It should be noted that, the Google Geocoding API has the following limits in place and you should keep them in mind before using this wrapper:
 - 2,500 requests per 24 hour period.
 - 5 requests per second.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/kamranahmedse/php-geocode/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
