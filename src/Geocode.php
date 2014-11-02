@@ -103,26 +103,19 @@ class Geocode
         foreach ($this->service_results->results[0]->address_components as $component) {
             if (in_array('street_number', $component->types)) {
                 $this->streetNumber = $component->long_name;
-            }
-            if (in_array('locality', $component->types)) {
+            } else if (in_array('locality', $component->types)) {
                 $this->locality = $component->long_name;
-            }
-            if (in_array('postal_town', $component->types)) {
+            } else if (in_array('postal_town', $component->types)) {
                 $this->town = $component->long_name;
-            }
-            if (in_array('administrative_area_level_2', $component->types)) {
+            } else if (in_array('administrative_area_level_2', $component->types)) {
                 $this->country = $component->long_name;
-            }
-            if (in_array('country', $component->types)) {
+            } else if (in_array('country', $component->types)) {
                 $this->country = $component->long_name;
-            }
-            if (in_array('administrative_area_level_1', $component->types)) {
+            } else if (in_array('administrative_area_level_1', $component->types)) {
                 $this->district = $component->long_name;
-            }
-            if (in_array('postal_code', $component->types)) {
+            } else if (in_array('postal_code', $component->types)) {
                 $this->postcode = $component->long_name;
-            }
-            if (in_array('route', $component->types)) {
+            } else if (in_array('route', $component->types)) {
                 $this->streetAddress = $component->long_name;
             }
         }
