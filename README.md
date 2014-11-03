@@ -73,6 +73,3 @@ It should be noted that, the Google Geocoding API has the following limits in pl
 - 2,500 requests per 24 hour period.
 - 5 requests per second.
 
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/kamranahmedse/php-geocode/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
