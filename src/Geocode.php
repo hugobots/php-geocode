@@ -23,6 +23,7 @@ class Geocode
      * Array containing the query results
      */
     private $service_results;
+    private $is_secure_protocol;
     
     /**
      * Address chunks
@@ -46,6 +47,8 @@ class Geocode
      */
     public function __construct($address, $secure_protocol = false)
     {
+        $this->is_secure_protocol = $secure_protocol;
+        
         $this->service_url = $secure_protocol ? 'https' . $this->service_url : 'http' . $this->service_url;
         $this->fetchAddressLatLng($address);
         
@@ -61,7 +64,8 @@ class Geocode
      */
     public function getServiceUrl()
     {
-        return $this->service_url;
+        $protocol = $this->is_secure_protocol ? 'https' : 'http';
+        return $protocol . $this->service_url;
     }
 
     /**
