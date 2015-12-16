@@ -17,7 +17,7 @@ class Geocode
     /**
      * API URL through which the address will be obtained.
      */
-    private $service_url = "://maps.googleapis.com/maps/api/geocode/json?sensor=false";
+    private $service_url = "://maps.googleapis.com/maps/api/geocode/json?";
 
     /**
      * Array containing the query results
