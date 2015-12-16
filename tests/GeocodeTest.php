@@ -22,17 +22,33 @@ class GeocodeTest extends \PHPUnit_Framework_TestCase
     {
         $actual = new Geocode('', false);
         $this->assertEquals(
-            'http://maps.googleapis.com/maps/api/geocode/json?sensor=false',
+            'http://maps.googleapis.com/maps/api/geocode/json?',
             $actual->getServiceUrl()
         );
 
         $actual = new Geocode('', true);
         $this->assertEquals(
-            'https://maps.googleapis.com/maps/api/geocode/json?sensor=false',
+            'https://maps.googleapis.com/maps/api/geocode/json?',
             $actual->getServiceUrl()
         );
     }
 
+    public function testGeocodeKey()
+    {
+        $actual = new Geocode('', false,'DUMMYKEY');
+        $this->assertEquals(
+            'http://maps.googleapis.com/maps/api/geocode/json?key=DUMMYKEY',
+            $actual->getServiceUrl()
+        );
+
+        $actual = new Geocode('', true,'DUMMYKEY');
+        $this->assertEquals(
+            'https://maps.googleapis.com/maps/api/geocode/json?key=DUMMYKEY',
+            $actual->getServiceUrl()
+        );
+    }
+
+ 
     public function providerTestGeocodeProvider()
     {
         $providers = array();

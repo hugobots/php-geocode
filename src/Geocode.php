@@ -43,10 +43,12 @@ class Geocode
      *
      * @param string $address The address that is to be parsed
      * @param boolean $secure_protocol true if you need to use HTTPS and false otherwise (Defaults to false)
+     * @param string $key GMAPS API KEY
      */
-    public function __construct($address, $secure_protocol = false)
+    public function __construct($address, $secure_protocol = false, $key=null)
     {
         $this->service_url = $secure_protocol ? 'https' . $this->service_url : 'http' . $this->service_url;
+        $this->service_url .= (is_null($key))?"":"key={$key}";
         $this->fetchAddressLatLng($address);
         
         $url = $this->getServiceUrl() . '&latlng='.$this->latitude.','.$this->longitude;
