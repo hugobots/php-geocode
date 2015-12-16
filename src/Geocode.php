@@ -47,7 +47,7 @@ class Geocode
      */
     public function __construct($address, $secure_protocol = false, $key=null)
     {
-        $this->service_url = $secure_protocol ? 'https' . $this->service_url : 'http' . $this->service_url;
+        $this->service_url = ($secure_protocol|| !is_null($key)) ? 'https' . $this->service_url : 'http' . $this->service_url;
         $this->service_url .= (is_null($key))?"":"key={$key}";
         $this->fetchAddressLatLng($address);
         
