@@ -18,15 +18,25 @@ class GeocodeTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    /**
+    *@test
+    *@expectedException \Exception
+    *@expectedExceptionMessage Address is needed
+    */
+    public function testEmptyOrNullAdress()
+    {
+        $actual = new Geocode("");
+    }
+
     public function testGeocodeProtocol()
     {
-        $actual = new Geocode('', false);
+        $actual = new Geocode('ADDR', false);
         $this->assertEquals(
             'http://maps.googleapis.com/maps/api/geocode/json?',
             $actual->getServiceUrl()
         );
 
-        $actual = new Geocode('', true);
+        $actual = new Geocode('ADDR', true);
         $this->assertEquals(
             'https://maps.googleapis.com/maps/api/geocode/json?',
             $actual->getServiceUrl()
@@ -35,13 +45,13 @@ class GeocodeTest extends \PHPUnit_Framework_TestCase
 
     public function testGeocodeKey()
     {
-        $actual = new Geocode('', false,'DUMMYKEY');
+        $actual = new Geocode('ADDR', false,'DUMMYKEY');
         $this->assertEquals(
-            'http://maps.googleapis.com/maps/api/geocode/json?key=DUMMYKEY',
+            'https://maps.googleapis.com/maps/api/geocode/json?key=DUMMYKEY',
             $actual->getServiceUrl()
         );
 
-        $actual = new Geocode('', true,'DUMMYKEY');
+        $actual = new Geocode('ADDR', true,'DUMMYKEY');
         $this->assertEquals(
             'https://maps.googleapis.com/maps/api/geocode/json?key=DUMMYKEY',
             $actual->getServiceUrl()

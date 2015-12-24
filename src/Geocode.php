@@ -47,12 +47,12 @@ class Geocode
      */
     public function __construct($address, $secure_protocol = false, $key=null)
     {
+        if(is_null($address)|| $address=="")
+            throw new \Exception("Address is needed");
+
         $this->service_url = ($secure_protocol|| !is_null($key)) ? 'https' . $this->service_url : 'http' . $this->service_url;
         $this->service_url .= (is_null($key))?"":"key={$key}";
-        $this->fetchAddressLatLng($address);
-        
-        $url = $this->getServiceUrl() . '&latlng='.$this->latitude.','.$this->longitude;
-        $this->service_results = $this->fetchServiceDetails($url);
+        $this->service_results = $this->fetchServiceDetails($address);
         $this->populateAddressVars();
     }
 
@@ -74,15 +74,16 @@ class Geocode
      * @param  string $url Google geocode API URL containing the address or latitude/longitude
      * @return bool|object false if no data is returned by URL and the detail otherwise
      */
-    private function fetchServiceDetails($url)
+    private function fetchServiceDetails($address)
     {
+        $this->address = $address;
+        $url= $this->getServiceUrl() . "&address=" . urlencode($address);
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         
         $service_results = json_decode(curl_exec($ch));
-
         if ($service_results && $service_results->status === 'OK') {
             return $service_results;
         }
@@ -120,35 +121,6 @@ class Geocode
             } elseif (in_array('route', $component->types)) {
                 $this->streetAddress = $component->long_name;
             }
-        }
-    }
-
-    /**
-     * fetchAddressLatLng
-     *
-     * Fetches the latitude and longitude for the address
-     * 
-     * @param string $address Address whose latitude and longitudes are required
-     * @return mixed false if there is no address found otherwise populates the latitude and longitude for the address 
-     * 
-     */
-    public function fetchAddressLatLng($address)
-    {
-        $this->address = $address;
-
-        if (!empty($address)) {
-
-            $tempAddress = $this->getServiceUrl() . "&address=" . urlencode($address);
-
-            $this->service_results = $this->fetchServiceDetails($tempAddress);
-
-            if ($this->service_results !== false) {
-                $this->latitude = $this->service_results->results[0]->geometry->location->lat;
-                $this->longitude = $this->service_results->results[0]->geometry->location->lng;
-            }
-
-        } else {
-            return false;
         }
     }
 
