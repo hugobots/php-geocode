@@ -47,11 +47,11 @@ class Geocode
      */
     public function __construct($address, $secure_protocol = false, $key = null)
     {
-        if(is_null($address)|| $address==""){
+        if(is_null($address)|| $address=="") {
             throw new \Exception("Address is needed");
         }
-        $this->service_url = ($secure_protocol|| !is_null($key)) 
-            ? 'https' . $this->service_url 
+        $this->service_url = ($secure_protocol|| !is_null($key))
+            ? 'https' . $this->service_url
             : 'http' . $this->service_url;
         $this->service_url .= (is_null($key))?"":"key={$key}";
         $this->service_results = $this->fetchServiceDetails($address);
