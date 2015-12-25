@@ -1,7 +1,7 @@
 <?php
 namespace kamranahmedse;
 
-class LocationInfo 
+class LocationInfo
 {
     private $address = '';
     private $latitude = '';
@@ -14,7 +14,7 @@ class LocationInfo
     private $streetNumber = '';
     private $streetAddress = '';
 
-    private $isValidInfo = true; 
+    private $isValidInfo = true;
 
     public function __construct($address, \stdClass $dataFromGoogleMaps)
     {
@@ -34,7 +34,7 @@ class LocationInfo
             return;
         }
         $this->latitude = $info->results[0]->geometry->location->lat;
-        $this->longitude = $info->results[0]->geometry->location->lng;        
+        $this->longitude = $info->results[0]->geometry->location->lng;
         foreach ($info->results[0]->address_components as $component) {
             if (in_array('street_number', $component->types)) {
                 $this->streetNumber = $component->long_name;
@@ -106,5 +106,3 @@ class LocationInfo
         return $this->streetAddress;
     }
 }
-
-

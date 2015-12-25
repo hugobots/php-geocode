@@ -33,10 +33,10 @@ class Geocode
      */
     public function __construct($key = null)
     {
-       $this->service_url = (!is_null($key))
+        $this->service_url = (!is_null($key))
             ? 'https' . $this->service_url."key={$key}"
             : 'http' . $this->service_url;
-   }
+    }
 
     /**
      * Returns the private $service_url
