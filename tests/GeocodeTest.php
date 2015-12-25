@@ -10,8 +10,8 @@ class GeocodeTest extends \PHPUnit_Framework_TestCase
      */
     public function testGeocode($address, $expected)
     {
-        $actual = new Geocode($address);
-
+        $actual = new Geocode();
+        $actual->fetchServiceDetails($address);
         $methods = array_keys($expected);
         foreach ($methods as $method) {
             $this->assertEquals($expected[$method], $actual->$method());
@@ -25,33 +25,34 @@ class GeocodeTest extends \PHPUnit_Framework_TestCase
     */
     public function testEmptyOrNullAdress()
     {
-        $actual = new Geocode("");
+        $actual = new Geocode();
+        $actual->fetchServiceDetails("");
     }
 
     public function testGeocodeProtocol()
     {
-        $actual = new Geocode('ADDR', false);
+        $actual = new Geocode();
         $this->assertEquals(
             'http://maps.googleapis.com/maps/api/geocode/json?',
             $actual->getServiceUrl()
         );
 
-        $actual = new Geocode('ADDR', true);
+        $actual = new Geocode();
         $this->assertEquals(
-            'https://maps.googleapis.com/maps/api/geocode/json?',
+            'http://maps.googleapis.com/maps/api/geocode/json?',
             $actual->getServiceUrl()
         );
     }
 
     public function testGeocodeKey()
     {
-        $actual = new Geocode('ADDR', false, 'DUMMYKEY');
+        $actual = new Geocode('DUMMYKEY');
         $this->assertEquals(
             'https://maps.googleapis.com/maps/api/geocode/json?key=DUMMYKEY',
             $actual->getServiceUrl()
         );
 
-        $actual = new Geocode('ADDR', true, 'DUMMYKEY');
+        $actual = new Geocode('DUMMYKEY');
         $this->assertEquals(
             'https://maps.googleapis.com/maps/api/geocode/json?key=DUMMYKEY',
             $actual->getServiceUrl()

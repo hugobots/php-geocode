@@ -45,18 +45,12 @@ class Geocode
      * @param boolean $secure_protocol true if you need to use HTTPS and false otherwise (Defaults to false)
      * @param string $key GMAPS API KEY
      */
-    public function __construct($address, $secure_protocol = false, $key = null)
+    public function __construct($key = null)
     {
-        if (is_null($address)|| $address=="") {
-            throw new \Exception("Address is needed");
-        }
-        $this->service_url = ($secure_protocol|| !is_null($key))
-            ? 'https' . $this->service_url
+       $this->service_url = (!is_null($key))
+            ? 'https' . $this->service_url."key={$key}"
             : 'http' . $this->service_url;
-        $this->service_url .= (is_null($key))?"":"key={$key}";
-        $this->service_results = $this->fetchServiceDetails($address);
-        $this->populateAddressVars();
-    }
+   }
 
     /**
      * Returns the private $service_url
@@ -76,8 +70,12 @@ class Geocode
      * @param  string $url Google geocode API URL containing the address or latitude/longitude
      * @return bool|object false if no data is returned by URL and the detail otherwise
      */
-    private function fetchServiceDetails($address)
+    public function fetchServiceDetails($address)
     {
+        if (is_null($address)|| $address=="") {
+            throw new \Exception("Address is needed");
+        }
+
         $this->address = $address;
         $url= $this->getServiceUrl() . "&address=" . urlencode($address);
         $ch = curl_init();
@@ -87,7 +85,10 @@ class Geocode
         
         $service_results = json_decode(curl_exec($ch));
         if ($service_results && $service_results->status === 'OK') {
-            return $service_results;
+            $this->service_results = $service_results;
+            $this->populateAddressVars();
+ 
+            return $this->service_results;
         }
 
         return false;
