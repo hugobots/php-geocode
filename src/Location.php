@@ -1,108 +1,194 @@
 <?php
 namespace KamranAhmed\Geocode;
 
+/**
+ * Location
+ *
+ * Represents the location details obtained from the Geocoding
+ * Service
+ */
 class Location
 {
+    /** @var string Address to which the detail belong */
     private $address = '';
+
+    /** @var string Latitude of the location */
     private $latitude = '';
+
+    /** @var string Longitude of the location */
     private $longitude = '';
+
+    /** @var string Country of the location */
     private $country = '';
+
+    /** @var string Locality of the location */
     private $locality = '';
+
+    /** @var string District of the location */
     private $district = '';
+
+    /** @var string Postal code of the location */
     private $postcode = '';
+
+    /** @var string Town of the location */
     private $town = '';
+
+    /** @var string Street number */
     private $streetNumber = '';
+
+    /** @var string Street address */
     private $streetAddress = '';
 
-    private $isValidInfo = true;
+    /** @var boolean Whether the location is valid or not */
+    private $isValid = true;
 
-    public function __construct($address, \stdClass $dataFromGoogleMaps)
+    /**
+     * Create a new Location object 
+     * @param string    $address         Address whose detail it is
+     * @param \stdClass $dataFromService The data retrieved from the Geocoding service
+     */
+    public function __construct($address, \stdClass $dataFromService)
     {
         $this->address = $address;
-        $this->mapKeys($dataFromGoogleMaps);
+        $this->populateDetail($dataFromService);
     }
 
+    /**
+     * Checks whether the data passed to the class was valid
+     * @return boolean True if the data is valid and false otherwise
+     */
     public function isValid()
     {
-        return $this->isValidInfo;
+        return $this->isValid;
     }
 
-    private function mapKeys(\stdClass $info)
+    /**
+     * Populates the object with the detail from the service
+     * @param  \stdClass $locationDetail The address detail i.e. which was retrieved from the API
+     * @return boolean          True if successfuly populated the detail and false otherwise
+     */
+    private function populateDetail(\stdClass $locationDetail)
     {
-        if (!property_exists($info, 'results')) {
-            $this->isValidInfo = false;
-            return;
+        // The data from the API is returned under the `results` key
+        if (!property_exists($locationDetail, 'results')) {
+            $this->isValid = false;
+            return false;
         }
-        $this->latitude = $info->results[0]->geometry->location->lat;
-        $this->longitude = $info->results[0]->geometry->location->lng;
-        foreach ($info->results[0]->address_components as $component) {
+
+        $this->latitude = $locationDetail->results[0]->geometry->location->lat;
+        $this->longitude = $locationDetail->results[0]->geometry->location->lng;
+
+        foreach ($locationDetail->results[0]->address_components as $component) {
+
             if (in_array('street_number', $component->types)) {
                 $this->streetNumber = $component->long_name;
-            } elseif (in_array('locality', $component->types)) {
+            } else if (in_array('locality', $component->types)) {
                 $this->locality = $component->long_name;
-            } elseif (in_array('postal_town', $component->types)) {
+            } else if (in_array('postal_town', $component->types)) {
                 $this->town = $component->long_name;
-            } elseif (in_array('administrative_area_level_2', $component->types)) {
+            } else if (in_array('administrative_area_level_2', $component->types)) {
                 $this->country = $component->long_name;
-            } elseif (in_array('country', $component->types)) {
+            } else if (in_array('country', $component->types)) {
                 $this->country = $component->long_name;
-            } elseif (in_array('administrative_area_level_1', $component->types)) {
+            } else if (in_array('administrative_area_level_1', $component->types)) {
                 $this->district = $component->long_name;
-            } elseif (in_array('postal_code', $component->types)) {
+            } else if (in_array('postal_code', $component->types)) {
                 $this->postcode = $component->long_name;
-            } elseif (in_array('route', $component->types)) {
+            } else if (in_array('route', $component->types)) {
                 $this->streetAddress = $component->long_name;
             }
         }
+
+        return true;
     }
 
-    public function getAddress()
+    /**
+     * Gets the address
+     * @return string
+     */
+    public function getAddress($default = '')
     {
-        return $this->address;
+        return $this->address ?: $default;
     }
 
-    public function getLatitude()
+    /**
+     * Gets the latitude of the location
+     * @return string
+     */
+    public function getLatitude($default = '')
     {
-        return $this->latitude;
+        return $this->latitude ?: $default;
     }
 
-    public function getLongitude()
+    /**
+     * Gets the longitude of the location
+     * @return string
+     */
+    public function getLongitude($default = '')
     {
-        return $this->longitude;
+        return $this->longitude ?: $default;
     }
 
-    public function getCountry()
+    /**
+     * Gets the country of the location
+     * @return string
+     */
+    public function getCountry($default = '')
     {
-        return $this->country;
+        return $this->country ?: $default;
     }
 
-    public function getLocality()
+    /**
+     * Gets the locality of the location
+     * @return string
+     */
+    public function getLocality($default = '')
     {
-        return $this->locality;
+        return $this->locality ?: $default;
     }
 
-    public function getDistrict()
+    /**
+     * Gets the district of the location
+     * @return string
+     */
+    public function getDistrict($default = '')
     {
-        return $this->district;
+        return $this->district ?: $default;
     }
 
-    public function getPostcode()
+    /**
+     * Gets the post code for the location
+     * @return string
+     */
+    public function getPostcode($default = '')
     {
-        return $this->postcode;
+        return $this->postcode ?: $default;
     }
 
-    public function getTown()
+    /**
+     * Gets the town for the location
+     * @return string
+     */
+    public function getTown($default = '')
     {
-        return $this->town;
+        return $this->town ?: $default;
     }
 
-    public function getStreetNumber()
+    /**
+     * Gets the street number for the location
+     * @return string
+     */
+    public function getStreetNumber($default = '')
     {
-        return $this->streetNumber;
+        return $this->streetNumber ?: $default;
     }
 
-    public function getStreetAddress()
+    /**
+     * Gets the street address
+     * @return string
+     */
+    public function getStreetAddress($default = '')
     {
-        return $this->streetAddress;
+        return $this->streetAddress ?: $default;
     }
 }
