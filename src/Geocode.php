@@ -17,12 +17,12 @@ class Geocode
     /**
      * API URL through which the address will be obtained.
      */
-    private $service_url = "://maps.googleapis.com/maps/api/geocode/json?";
+    private $serviceUrl = "://maps.googleapis.com/maps/api/geocode/json?";
 
     /**
      * Array containing the query results
      */
-    private $service_results;
+    private $serviceResults;
     
    /**
      * Constructor
@@ -31,19 +31,19 @@ class Geocode
      */
     public function __construct($key = '')
     {
-        $this->service_url = (!empty($key))
-            ? 'https' . $this->service_url."key={$key}"
-            : 'http' . $this->service_url;
+        $this->serviceUrl = (!empty($key))
+            ? 'https' . $this->serviceUrl."key={$key}"
+            : 'http' . $this->serviceUrl;
     }
 
     /**
-     * Returns the private $service_url
+     * Returns the private $serviceUrl
      * 
      * @return string The service URL
      */
     public function getServiceUrl()
     {
-        return $this->service_url;
+        return $this->serviceUrl;
     }
 
     /**
@@ -66,10 +66,10 @@ class Geocode
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         
-        $service_results = json_decode(curl_exec($ch));
-        if ($service_results && $service_results->status === 'OK') {
-            $this->service_results = $service_results;
-            return new Location($address, $this->service_results);
+        $serviceResults = json_decode(curl_exec($ch));
+        if ($serviceResults && $serviceResults->status === 'OK') {
+            $this->serviceResults = $serviceResults;
+            return new Location($address, $this->serviceResults);
         }
     
         return new Location($address, new \stdClass);
