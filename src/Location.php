@@ -1,5 +1,5 @@
 <?php
-namespace kamranahmedse;
+namespace KamranAhmed\Geocode;
 
 class Location
 {

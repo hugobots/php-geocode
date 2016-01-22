@@ -1,6 +1,6 @@
 <?php
 
-namespace kamranahmedse;
+namespace KamranAhmed\Geocode;
 
 /**
  * Geocode
@@ -10,7 +10,7 @@ namespace kamranahmedse;
  *
  * @author Kamran Ahmed <kamranahmed.se@gmail.com>
  * @license http://www.opensource.org/licenses/MIT
- * @version v1.1
+ * @version v2.0
  */
 class Geocode
 {

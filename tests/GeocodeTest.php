@@ -1,6 +1,6 @@
 <?php
 
-namespace kamranahmedse;
+namespace KamranAhmed\Geocode;
 
 class GeocodeTest extends \PHPUnit_Framework_TestCase
 {
