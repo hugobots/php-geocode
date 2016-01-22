@@ -27,13 +27,11 @@ class Geocode
    /**
      * Constructor
      *
-     * @param string $address The address that is to be parsed
-     * @param boolean $secure_protocol true if you need to use HTTPS and false otherwise (Defaults to false)
-     * @param string $key GMAPS API KEY
+     * @param string $key Google Maps Geocoding API key
      */
-    public function __construct($key = null)
+    public function __construct($key = '')
     {
-        $this->service_url = (!is_null($key))
+        $this->service_url = (!empty($key))
             ? 'https' . $this->service_url."key={$key}"
             : 'http' . $this->service_url;
     }
@@ -58,8 +56,8 @@ class Geocode
      */
     public function get($address)
     {
-        if (is_null($address)|| $address=="") {
-            throw new \Exception("Address is needed");
+        if ( empty($address) ) {
+            throw new \Exception("Address is required in order to process");
         }
 
         $url= $this->getServiceUrl() . "&address=" . urlencode($address);
@@ -74,6 +72,6 @@ class Geocode
             return new Location($address, $this->service_results);
         }
     
-        return new Location($address, new \StdClass);
+        return new Location($address, new \stdClass);
     }
 }

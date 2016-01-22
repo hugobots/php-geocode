@@ -30,7 +30,7 @@ class GeocodeTest extends \PHPUnit_Framework_TestCase
     /**
     *@test
     *@expectedException \Exception
-    *@expectedExceptionMessage Address is needed
+    *@expectedExceptionMessage Address is required in order to process
     */
     public function testEmptyOrNullAdress()
     {
