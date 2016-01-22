@@ -1,7 +1,7 @@
 <?php
 namespace kamranahmedse;
 
-class LocationInfo
+class Location
 {
     private $address = '';
     private $latitude = '';

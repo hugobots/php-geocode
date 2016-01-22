@@ -71,8 +71,9 @@ class Geocode
         $service_results = json_decode(curl_exec($ch));
         if ($service_results && $service_results->status === 'OK') {
             $this->service_results = $service_results;
-            return new LocationInfo($address, $this->service_results);
+            return new Location($address, $this->service_results);
         }
-        return new LocationInfo($address, new \StdClass);
+    
+        return new Location($address, new \StdClass);
     }
 }
