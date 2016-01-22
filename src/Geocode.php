@@ -5,7 +5,7 @@ namespace KamranAhmed\Geocode;
 /**
  * Geocode
  *
- * A wrapper around Google's Geocode API that parses the address, 
+ * A wrapper around Google's Geocode API that parses the address,
  * to get different details regarding the address
  *
  * @author Kamran Ahmed <kamranahmed.se@gmail.com>
@@ -38,7 +38,7 @@ class Geocode
 
     /**
      * Returns the private $serviceUrl
-     * 
+     *
      * @return string The service URL
      */
     public function getServiceUrl()
@@ -47,16 +47,16 @@ class Geocode
     }
 
     /**
-     * get 
-     * 
+     * get
+     *
      * Sends request to the passed Google Geocode API URL and fetches the address details and returns them
-     * 
+     *
      * @param  string $url Google geocode API URL containing the address or latitude/longitude
      * @return bool|object false if no data is returned by URL and the detail otherwise
      */
     public function get($address)
     {
-        if ( empty($address) ) {
+        if (empty($address)) {
             throw new \Exception("Address is required in order to process");
         }
 

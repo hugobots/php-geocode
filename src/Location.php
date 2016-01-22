@@ -43,7 +43,7 @@ class Location
     private $isValid = true;
 
     /**
-     * Create a new Location object 
+     * Create a new Location object
      * @param string    $address         Address whose detail it is
      * @param \stdClass $dataFromService The data retrieved from the Geocoding service
      */
@@ -82,19 +82,19 @@ class Location
 
             if (in_array('street_number', $component->types)) {
                 $this->streetNumber = $component->long_name;
-            } else if (in_array('locality', $component->types)) {
+            } elseif (in_array('locality', $component->types)) {
                 $this->locality = $component->long_name;
-            } else if (in_array('postal_town', $component->types)) {
+            } elseif (in_array('postal_town', $component->types)) {
                 $this->town = $component->long_name;
-            } else if (in_array('administrative_area_level_2', $component->types)) {
+            } elseif (in_array('administrative_area_level_2', $component->types)) {
                 $this->country = $component->long_name;
-            } else if (in_array('country', $component->types)) {
+            } elseif (in_array('country', $component->types)) {
                 $this->country = $component->long_name;
-            } else if (in_array('administrative_area_level_1', $component->types)) {
+            } elseif (in_array('administrative_area_level_1', $component->types)) {
                 $this->district = $component->long_name;
-            } else if (in_array('postal_code', $component->types)) {
+            } elseif (in_array('postal_code', $component->types)) {
                 $this->postcode = $component->long_name;
-            } else if (in_array('route', $component->types)) {
+            } elseif (in_array('route', $component->types)) {
                 $this->streetAddress = $component->long_name;
             }
         }
