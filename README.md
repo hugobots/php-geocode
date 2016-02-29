@@ -3,7 +3,6 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kamranahmedse/php-geocode/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kamranahmedse/php-geocode/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/kamranahmedse/php-geocode/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/kamranahmedse/php-geocode/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/kamranahmedse/php-geocode/v/stable.svg)](https://packagist.org/packages/kamranahmedse/php-geocode)
-[![License](https://poser.pugx.org/kamranahmedse/php-geocode/license.svg)](https://packagist.org/packages/kamranahmedse/php-geocode)
 
 A wrapper around the Google Geocoding API to get different details regarding an address such as 
 - Latitude/longitude
