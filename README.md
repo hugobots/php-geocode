@@ -22,7 +22,7 @@ You can install the library using the following ways
 ## Composer
 The recommended installation method is through <a href="http://getcomposer.org/">Composer</a>, a dependency manager for PHP. Just add <code>kamranahmedse/php-geocode</code> to your project's <code>composer.json</code> file:
 
-```
+```json
 {
     "require": {
         "kamranahmedse/php-geocode": "*"
@@ -34,8 +34,8 @@ and then run <code>composer install</code>. For further details you can find the
 ## Manual way
 Or you can install the package manually by:
 
-- Copy <code>src/php-geocode.php</code> to your codebase, perhaps to the vendor directory.
-- Add the <code>Geocode</code> class to your autoloader or require the file directly.
+- Copy `src/php-geocode.php` to your codebase, perhaps to the vendor directory.
+- Add the `Geocode` class to your autoloader or require the file directly.
 
 ## Getting Started
 I'm going to use the following address to explain the use of library i.e.
@@ -43,7 +43,7 @@ I'm going to use the following address to explain the use of library i.e.
 >1600 Amphitheatre Parkway, Mountain View, CA
 
 Instantiate the `Geocode` class and call the methods as follows
-```
+```php
 // Introduce the class into your scope
 use KamranAhmed\Geocode\Geocode;
 
