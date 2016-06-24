@@ -79,7 +79,6 @@ class Location
         $this->longitude = $locationDetail->results[0]->geometry->location->lng;
 
         foreach ($locationDetail->results[0]->address_components as $component) {
-
             if (in_array('street_number', $component->types)) {
                 $this->streetNumber = $component->long_name;
             } elseif (in_array('locality', $component->types)) {
