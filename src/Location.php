@@ -9,41 +9,64 @@ namespace KamranAhmed\Geocode;
  */
 class Location
 {
-    /** @var string Address to which the detail belong */
+    /**
+     * @var string Address to which the detail belong
+     */
     private $address = '';
 
-    /** @var string Latitude of the location */
+    /**
+     * @var string Latitude of the location
+     */
     private $latitude = '';
 
-    /** @var string Longitude of the location */
+    /**
+     * @var string Longitude of the location
+     */
     private $longitude = '';
 
-    /** @var string Country of the location */
+    /**
+     * @var string Country of the location
+     */
     private $country = '';
 
-    /** @var string Locality of the location */
+    /**
+     * @var string Locality of the location
+     */
     private $locality = '';
 
-    /** @var string District of the location */
+    /**
+     * @var string District of the location
+     */
     private $district = '';
 
-    /** @var string Postal code of the location */
+    /**
+     * @var string Postal code of the location
+     */
     private $postcode = '';
 
-    /** @var string Town of the location */
+    /**
+     * @var string Town of the location
+     */
     private $town = '';
 
-    /** @var string Street number */
+    /**
+     * @var string Street number
+     */
     private $streetNumber = '';
 
-    /** @var string Street address */
+    /**
+     * @var string Street address
+     */
     private $streetAddress = '';
 
-    /** @var boolean Whether the location is valid or not */
+    /**
+     * @var boolean Whether the location is valid or not
+     */
     private $isValid = true;
 
     /**
      * Create a new Location object
+     *
      * @param string    $address         Address whose detail it is
      * @param \stdClass $dataFromService The data retrieved from the Geocoding service
      */
@@ -55,6 +78,7 @@ class Location
 
     /**
      * Checks whether the data passed to the class was valid
+     *
      * @return boolean True if the data is valid and false otherwise
      */
     public function isValid()
@@ -64,18 +88,21 @@ class Location
 
     /**
      * Populates the object with the detail from the service
-     * @param  \stdClass $locationDetail The address detail i.e. which was retrieved from the API
-     * @return boolean          True if successfuly populated the detail and false otherwise
+     *
+     * @param \stdClass $locationDetail The address detail i.e. which was retrieved from the API
+     *
+     * @return boolean          True if successfully populated the detail and false otherwise
      */
     private function populateDetail(\stdClass $locationDetail)
     {
         // The data from the API is returned under the `results` key
         if (!property_exists($locationDetail, 'results')) {
             $this->isValid = false;
+
             return false;
         }
 
-        $this->latitude = $locationDetail->results[0]->geometry->location->lat;
+        $this->latitude  = $locationDetail->results[0]->geometry->location->lat;
         $this->longitude = $locationDetail->results[0]->geometry->location->lng;
 
         foreach ($locationDetail->results[0]->address_components as $component) {
@@ -103,6 +130,9 @@ class Location
 
     /**
      * Gets the address
+     *
+     * @param string $default
+     *
      * @return string
      */
     public function getAddress($default = '')
@@ -112,6 +142,9 @@ class Location
 
     /**
      * Gets the latitude of the location
+     *
+     * @param string $default
+     *
      * @return string
      */
     public function getLatitude($default = '')
@@ -121,6 +154,9 @@ class Location
 
     /**
      * Gets the longitude of the location
+     *
+     * @param string $default
+     *
      * @return string
      */
     public function getLongitude($default = '')
@@ -130,6 +166,9 @@ class Location
 
     /**
      * Gets the country of the location
+     *
+     * @param string $default
+     *
      * @return string
      */
     public function getCountry($default = '')
@@ -139,6 +178,9 @@ class Location
 
     /**
      * Gets the locality of the location
+     *
+     * @param string $default
+     *
      * @return string
      */
     public function getLocality($default = '')
@@ -148,6 +190,9 @@ class Location
 
     /**
      * Gets the district of the location
+     *
+     * @param string $default
+     *
      * @return string
      */
     public function getDistrict($default = '')
@@ -157,6 +202,9 @@ class Location
 
     /**
      * Gets the post code for the location
+     *
+     * @param string $default
+     *
      * @return string
      */
     public function getPostcode($default = '')
@@ -166,6 +214,9 @@ class Location
 
     /**
      * Gets the town for the location
+     *
+     * @param string $default
+     *
      * @return string
      */
     public function getTown($default = '')
@@ -175,6 +226,9 @@ class Location
 
     /**
      * Gets the street number for the location
+     *
+     * @param string $default
+     *
      * @return string
      */
     public function getStreetNumber($default = '')
@@ -184,6 +238,9 @@ class Location
 
     /**
      * Gets the street address
+     *
+     * @param string $default
+     *
      * @return string
      */
     public function getStreetAddress($default = '')
