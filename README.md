@@ -49,7 +49,7 @@ use KamranAhmed\Geocode\Geocode;
 
 
 // Optionally you can pass the API key for Geocoding
-// $geocode = new Geocode();
+$geocode = new Geocode();
 
 // Get the details for the passed address
 $location = $geocode->get("1600 Amphitheatre Parkway, Mountain View, CA");
