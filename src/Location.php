@@ -60,6 +60,31 @@ class Location
     private $streetAddress = '';
 
     /**
+     * @var string Short Country of the location
+     */
+    private $shortCountry = '';
+
+    /**
+     * @var string Short Locality of the location
+     */
+    private $shortLocality = '';
+
+    /**
+     * @var string Short District of the location
+     */
+    private $shortDistrict = '';
+
+    /**
+     * @var string Short Town of the location
+     */
+    private $shortTown = '';
+
+    /**
+     * @var string Short Street address
+     */
+    private $shortStreetAddress = '';
+
+    /**
      * @var boolean Whether the location is valid or not
      */
     private $isValid = true;
@@ -110,18 +135,24 @@ class Location
                 $this->streetNumber = $component->long_name;
             } elseif (in_array('locality', $component->types)) {
                 $this->locality = $component->long_name;
+                $this->shortLocality = $component->short_name;
             } elseif (in_array('postal_town', $component->types)) {
                 $this->town = $component->long_name;
+                $this->shortTown = $component->short_name;
             } elseif (in_array('administrative_area_level_2', $component->types)) {
                 $this->country = $component->long_name;
+                $this->shortCountry = $component->short_name;
             } elseif (in_array('country', $component->types)) {
                 $this->country = $component->long_name;
+                $this->shortCountry = $component->short_name;
             } elseif (in_array('administrative_area_level_1', $component->types)) {
                 $this->district = $component->long_name;
+                $this->shortDistrict = $component->short_name;
             } elseif (in_array('postal_code', $component->types)) {
                 $this->postcode = $component->long_name;
             } elseif (in_array('route', $component->types)) {
                 $this->streetAddress = $component->long_name;
+                $this->shortStreetAddress = $component->short_name;
             }
         }
 
@@ -177,6 +208,18 @@ class Location
     }
 
     /**
+     * Gets the short country of the location
+     *
+     * @param string $default
+     *
+     * @return string
+     */
+    public function getShortCountry($default = '')
+    {
+        return $this->shortCountry ?: $default;
+    }
+
+    /**
      * Gets the locality of the location
      *
      * @param string $default
@@ -186,6 +229,17 @@ class Location
     public function getLocality($default = '')
     {
         return $this->locality ?: $default;
+    }
+    /**
+     * Gets the short locality of the location
+     *
+     * @param string $default
+     *
+     * @return string
+     */
+    public function getShortLocality($default = '')
+    {
+        return $this->shortLocality ?: $default;
     }
 
     /**
@@ -198,6 +252,17 @@ class Location
     public function getDistrict($default = '')
     {
         return $this->district ?: $default;
+    }
+    /**
+     * Gets the short district of the location
+     *
+     * @param string $default
+     *
+     * @return string
+     */
+    public function getShortDistrict($default = '')
+    {
+        return $this->shortDistrict ?: $default;
     }
 
     /**
@@ -223,6 +288,17 @@ class Location
     {
         return $this->town ?: $default;
     }
+    /**
+     * Gets the short town of the location
+     *
+     * @param string $default
+     *
+     * @return string
+     */
+    public function getShortTown($default = '')
+    {
+        return $this->shortTown ?: $default;
+    }
 
     /**
      * Gets the street number for the location
@@ -246,5 +322,16 @@ class Location
     public function getStreetAddress($default = '')
     {
         return $this->streetAddress ?: $default;
+    }
+    /**
+     * Gets the short street address of the location
+     *
+     * @param string $default
+     *
+     * @return string
+     */
+    public function getShortStreetAddress($default = '')
+    {
+        return $this->shortStreetAddress ?: $default;
     }
 }
