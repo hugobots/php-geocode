@@ -64,10 +64,11 @@ $location->getDistrict(); // returns the district of the address
 $location->getPostcode(); // returns the postal code of the address
 $location->getTown(); // returns the town of the address
 $location->getStreetNumber(); // returns the street number of the address
+$location->getNeighborhood(); // returns the neighborhood of the address
 ```
 
 ## Feedback
-I'd love to hear what you have to say. Please open an issue for any feature requests that you may want or the bugs that you notice. Also you can contact me at <a href="mailto:kamranahmed.se@gmail.com">kamranahmed.se@gmail.com</a> or you can also find me at twitter <a href="http://twitter.com/kamranahmed_se">@kamranahmed_se</a>
+I'd love to hear what you have to say. Please open an issue for any feature requests that you may want or the bugs that you notice. Also you can contact me at <a href="mailto:kamranahmed.se@gmail.com">kamranahmed.se@gmail.com</a> or you can also find me at twitter <a href="http://twitter.com/kamranahmedse">@kamranahmedse</a>
 
 
 # Note
