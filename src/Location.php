@@ -60,6 +60,11 @@ class Location
     private $streetAddress = '';
 
     /**
+     * @var string Neighborhood address
+     */
+    private $neighborhood = '';
+
+    /**
      * @var string Short Country of the location
      */
     private $shortCountry = '';
@@ -83,6 +88,11 @@ class Location
      * @var string Short Street address
      */
     private $shortStreetAddress = '';
+
+    /**
+     * @var string Short Neighborhood address
+     */
+    private $shortNeighborhood = '';
 
     /**
      * @var boolean Whether the location is valid or not
@@ -153,6 +163,9 @@ class Location
             } elseif (in_array('route', $component->types)) {
                 $this->streetAddress = $component->long_name;
                 $this->shortStreetAddress = $component->short_name;
+            } elseif (in_array('political', $component->types)) {
+                $this->neighborhood = $component->long_name;
+                $this->shortNeighborhood = $component->short_name;
             }
         }
 
@@ -333,5 +346,28 @@ class Location
     public function getShortStreetAddress($default = '')
     {
         return $this->shortStreetAddress ?: $default;
+    }
+
+    /**
+     * Gets the neighborhood address
+     *
+     * @param string $default
+     *
+     * @return string
+     */
+    public function getNeighborhood($default = '')
+    {
+        return $this->neighborhood ?: $default;
+    }
+    /**
+     * Gets the short neighborhood address of the location
+     *
+     * @param string $default
+     *
+     * @return string
+     */
+    public function getShortNeighborhood($default = '')
+    {
+        return $this->shortNeighborhood ?: $default;
     }
 }
