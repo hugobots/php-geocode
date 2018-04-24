@@ -8,8 +8,6 @@ No longer maintained, a better alternative would be [geocoder-php](https://githu
 
 [![Build Status](https://travis-ci.org/hugobots/php-geocode.svg?branch=master)](https://travis-ci.org/hugobots/php-geocode)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/hugobots/php-geocode/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/hugobots/php-geocode/?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/hugobots/php-geocode/v/stable.svg)](https://packagist.org/packages/hugobots/php-geocode)
-[![Packagist](https://img.shields.io/packagist/dt/hugobots/php-geocode.svg)](https://packagist.org/packages/hugobots/php-geocode)
 
 A wrapper around the Google Geocoding API to get different details regarding an address such as 
 - Latitude/longitude
