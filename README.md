@@ -24,7 +24,7 @@ PHP >= 5.4.0 and <code>curl</code> enabled server.
 ## Installation
 You can install the library using the following ways
 
-## Composerm
+## Composer
 The recommended installation method is through <a href="http://getcomposer.org/">Composer</a>, a dependency manager for PHP. Just add <code>hugobots/php-geocode</code> to your project's <code>composer.json</code> file:
 
 ```json
