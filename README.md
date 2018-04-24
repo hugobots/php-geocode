@@ -1,5 +1,8 @@
-:warning: No longer maintained, a better alternative would be [geocoder-php](https://github.com/geocoder-php/Geocoder) 
--------------
+-------
+
+No longer maintained, a better alternative would be [geocoder-php](https://github.com/geocoder-php/Geocoder) 
+
+-------
 
 # PHP Geocode
 
