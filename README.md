@@ -1,9 +1,12 @@
+:warning: No longer maintained, a better alternative would be [geocoder-php](https://github.com/geocoder-php/Geocoder) 
+-------------
+
 # PHP Geocode
-[![Build Status](https://travis-ci.org/kamranahmedse/php-geocode.svg?branch=master)](https://travis-ci.org/kamranahmedse/php-geocode)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kamranahmedse/php-geocode/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kamranahmedse/php-geocode/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/kamranahmedse/php-geocode/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/kamranahmedse/php-geocode/?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/kamranahmedse/php-geocode/v/stable.svg)](https://packagist.org/packages/kamranahmedse/php-geocode)
-[![Packagist](https://img.shields.io/packagist/dt/kamranahmedse/php-geocode.svg)](https://packagist.org/packages/kamranahmedse/php-geocode)
+
+[![Build Status](https://travis-ci.org/hugobots/php-geocode.svg?branch=master)](https://travis-ci.org/hugobots/php-geocode)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/hugobots/php-geocode/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/hugoobts/php-geocode/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/hugobots/php-geocode/v/stable.svg)](https://packagist.org/packages/hugobots/php-geocode)
+[![Packagist](https://img.shields.io/packagist/dt/hugobots/php-geocode.svg)](https://packagist.org/packages/hugobots/php-geocode)
 
 A wrapper around the Google Geocoding API to get different details regarding an address such as 
 - Latitude/longitude
@@ -20,17 +23,17 @@ PHP >= 5.4.0 and <code>curl</code> enabled server.
 ## Installation
 You can install the library using the following ways
 
-## Composer
-The recommended installation method is through <a href="http://getcomposer.org/">Composer</a>, a dependency manager for PHP. Just add <code>kamranahmedse/php-geocode</code> to your project's <code>composer.json</code> file:
+## Composerm
+The recommended installation method is through <a href="http://getcomposer.org/">Composer</a>, a dependency manager for PHP. Just add <code>hugobots/php-geocode</code> to your project's <code>composer.json</code> file:
 
 ```json
 {
     "require": {
-        "kamranahmedse/php-geocode": "*"
+        "hugobots/php-geocode": "*"
     }
 }
 ```
-and then run <code>composer install</code>. For further details you can find the package at <a href="https://packagist.org/packages/kamranahmedse/php-geocode">Packagist</a>.
+and then run <code>composer install</code>. For further details you can find the package at <a href="https://packagist.org/packages/hugobots/php-geocode">Packagist</a>.
 
 ## Manual way
 Or you can install the package manually by:
